@@ -18,8 +18,8 @@ def get_help():
     embed.add_field(
         name="📊 View Leaderboards",
         value="**`danphe top <k>`**\n"
-        "Shows the top k individual users sorted by their scores.\n"
-        "Example: `danphe top 5` shows the top 5 users\n\n",
+        "Shows the top k teams sorted by their scores.\n"
+        "Example: `danphe top 5` shows the top 5 teams\n\n",
         inline=False,
     )
 
@@ -51,7 +51,7 @@ def get_responses(user_input: str, is_admin: bool) -> str | discord.Embed:
         if command == "help":
             return get_help()
 
-        # Top k users command
+        # Top k teams command
         elif command.startswith("top "):
             try:
                 k = int(command.split()[1])
@@ -62,11 +62,11 @@ def get_responses(user_input: str, is_admin: bool) -> str | discord.Embed:
 
                 top_users = get_top_k_individual(k)
                 if not top_users:
-                    return "No users found in the leaderboard"
+                    return "No teams found in the leaderboard"
 
                 embed = discord.Embed(
-                    title=f"Top {k} Users",
-                    description="Here are the top performers!",
+                    title=f"Top {k} Teams",
+                    description="Here are the top teams!",
                     color=discord.Color.gold(),
                 )
 
